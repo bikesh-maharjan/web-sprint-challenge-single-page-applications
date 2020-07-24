@@ -53,7 +53,7 @@ export default function PizzaForm(props) {
             value={values.address}
           />
         </label>
-        <label>Pizza Size :&nbsp; </label>
+        <label>Pizza Size &nbsp; </label>
         <select onChange={onInputChange} value={values.size} name="size">
           <option value="small">Small</option>
           <option value="medium">Medium</option>
@@ -63,7 +63,7 @@ export default function PizzaForm(props) {
 
         <h3>Toppings</h3>
         <label>
-          Chicken: &nbsp;
+          Chicken &nbsp;
           <input
             type="checkbox"
             name="chicken"
@@ -81,7 +81,7 @@ export default function PizzaForm(props) {
           />
         </label>
         <label>
-          Spinach: &nbsp;
+          Spinach &nbsp;
           <input
             type="checkbox"
             name="spinach"
@@ -90,7 +90,7 @@ export default function PizzaForm(props) {
           />
         </label>
         <label>
-          Bacon: &nbsp;
+          Bacon &nbsp;
           <input
             type="checkbox"
             name="bacon"

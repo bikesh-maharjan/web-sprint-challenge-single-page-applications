@@ -6,6 +6,7 @@ import axios from "axios";
 import * as yup from "yup";
 import "./App.css";
 import formSchema from "./validation/formSchema";
+import Navbar from "./components/Navbar";
 
 //intital states
 
@@ -91,13 +92,15 @@ const App = () => {
     };
     preNewOrder(newOrder);
   };
+  useEffect(() => {
+    formSchema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-      <Link to="/"> Home</Link>
-      <Link to="/pizza">Pizza</Link>
+      <Navbar />
 
       <Switch>
         <Route path="/pizza/">
