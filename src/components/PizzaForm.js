@@ -1,5 +1,66 @@
 import React from "react";
+import styled from "styled-components";
 
+const PizzaFormText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: lightgrey;
+  width: 100%;
+  height: 100vh;
+  padding: 3%;
+  h2,
+  h3 {
+    color: black;
+  }
+  button {
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 10%;
+    margin-top: 10px;
+  }
+`;
+const CheckBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 40%;
+  label {
+    margin: 10px;
+  }
+`;
+const PizzaSize = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 40%;
+  label {
+    margin: 10px;
+  }
+  select {
+    width: 75%;
+    font-size: 10px;
+  }
+`;
+
+const Instruction = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  label {
+    margin: 10px;
+  }
+`;
 export default function PizzaForm(props) {
   const {
     values,
@@ -26,15 +87,15 @@ export default function PizzaForm(props) {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="form-container">
+      <PizzaFormText className="form-container">
         <h2>Build your own Pizza!</h2>
         <div>
           <div>{errors.name}</div>
           <div>{errors.address}</div>
           <div>{errors.size}</div>
         </div>
-        <label>
-          Name :&nbsp;
+        <FormField>
+          <label>Name </label>
           <input
             name="name"
             type="text"
@@ -42,73 +103,82 @@ export default function PizzaForm(props) {
             onChange={onInputChange}
             value={values.name}
           />
-        </label>
-        <label>
-          Address :&nbsp;
+
+          <label>Address</label>
           <input
             name="address"
-            type="address"
-            type="Your address here"
+            type="text"
+            placeholder="Your address here"
             onChange={onInputChange}
             value={values.address}
           />
-        </label>
-        <label>Pizza Size &nbsp; </label>
-        <select onChange={onInputChange} value={values.size} name="size">
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-          <option value="extra-large">Extra-Large</option>
-        </select>
+        </FormField>
+        <PizzaSize>
+          <label>Pizza Size </label>
+          <select onChange={onInputChange} value={values.size} name="size">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="extra-large">Extra-Large</option>
+          </select>
+        </PizzaSize>
 
         <h3>Toppings</h3>
-        <label>
-          Chicken &nbsp;
-          <input
-            type="checkbox"
-            name="chicken"
-            checked={values.toppings.chicken === true}
-            onChange={onCheckboxChange}
-          />
-        </label>
-        <label>
-          Pepperoni: &nbsp;
-          <input
-            type="checkbox"
-            name="pepperoni"
-            checked={values.toppings.pepperoni === true}
-            onChange={onCheckboxChange}
-          />
-        </label>
-        <label>
-          Spinach &nbsp;
-          <input
-            type="checkbox"
-            name="spinach"
-            checked={values.toppings.spinach === true}
-            onChange={onCheckboxChange}
-          />
-        </label>
-        <label>
-          Bacon &nbsp;
-          <input
-            type="checkbox"
-            name="bacon"
-            checked={values.toppings.bacon === true}
-            onChange={onCheckboxChange}
-          />
-        </label>
+        <CheckBox className="checkboxSelection">
+          <label>
+            <input
+              type="checkbox"
+              name="chicken"
+              checked={values.toppings.chicken === true}
+              onChange={onCheckboxChange}
+            />
+            Chicken
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="pepperoni"
+              checked={values.toppings.pepperoni === true}
+              onChange={onCheckboxChange}
+            />
+            Pepperoni &nbsp;
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="spinach"
+              checked={values.toppings.spinach === true}
+              onChange={onCheckboxChange}
+            />
+            Spinach &nbsp;
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              id="checkbox"
+              name="bacon"
+              checked={values.toppings.bacon === true}
+              onChange={onCheckboxChange}
+            />
+            Bacon &nbsp;
+          </label>
+        </CheckBox>
 
-        <label>
-          Special Instructions? &nbsp;
+        <Instruction>
+          <label>Special Instructions?</label>
           <input
-            name="instructions"
+            value={values.specialInstructions}
+            name="specialInstructions"
             type="text"
             placeholder="Do you have any additional requests for us?"
+            onChange={onInputChange}
           />
-        </label>
-        <button disabled={disabled}> Add Me Now</button>
-      </div>
+        </Instruction>
+
+        <button id="submitBtn" disabled={disabled}>
+          Submit
+        </button>
+      </PizzaFormText>
     </form>
   );
 }

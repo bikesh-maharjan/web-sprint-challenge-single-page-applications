@@ -1,19 +1,24 @@
-import * as yup from 'yup'
+import * as yup from "yup";
 
 const formSchema = yup.object().shape({
-    name: yup
+  name: yup
     .string()
     .min(3, "name must be at least 3 characters")
-    .required( "Name is required "),
+    .required("Name is required "),
 
-    size: yup
+  size: yup
     .string()
-    .oneOf(['small', 'medium', 'large', 'extra-large'], "Pizza size is required"),
+    .oneOf(
+      ["small", "medium", "large", "extra-large"],
+      "Pizza size is required"
+    ),
 
-    address: yup 
+  address: yup
     .string()
     .min(10, "address needed to fill the order")
-    .required("Address is required")
-})
+    .required("Address is required"),
 
-export default formSchema
+  specialInstructions: yup.string(),
+});
+
+export default formSchema;
